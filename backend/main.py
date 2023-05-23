@@ -6,6 +6,7 @@ from decouple import config
 import openai
 
 #custom Function imports
+from functions.openai_requests import convert_audio_to_text
 
 
 #initiate App
@@ -30,3 +31,21 @@ app.add_middleware(
 @app.get("/health")
 async def check_health():
     return {"message": "healthy"}
+
+#post bot response
+#notee: not playing in browser when using post request
+@app.post("/post-audio")
+async def post_audio(file:UploadFile=File(...)):
+    print("hello world")
+
+#get audio
+@app.get("/post-audio-get")
+async def get_audio():
+    audio_input = open("guillem_voice.mp3", "rb")
+
+    #decode audio
+    message_decoded = convert_audio_to_text(audio_input)
+    print(message_decoded)
+    return message_decoded
+
+
