@@ -8,6 +8,7 @@ import openai
 #custom Function imports
 from functions.openai_requests import convert_audio_to_text
 from functions.openai_requests import get_chat_response
+from functions.database import store_messages
 
 
 #initiate App
@@ -57,6 +58,10 @@ async def get_audio():
     
     #Get chatGpte response
     chat_response = get_chat_response(message_decoded)
+
+    #store messages
+    store_messages(message_decoded, chat_response)
+
     print("chat response:",chat_response)
 
     return "Done"
