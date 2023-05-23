@@ -7,6 +7,7 @@ import openai
 
 #custom Function imports
 from functions.openai_requests import convert_audio_to_text
+from functions.openai_requests import get_chat_response
 
 
 #initiate App
@@ -49,7 +50,15 @@ async def get_audio():
 
     #decode audio
     message_decoded = convert_audio_to_text(audio_input)
-    print(message_decoded)
-    return message_decoded
+
+    #Guard: ensure message is decoded
+    if not message_decoded:
+        return HTTPException(status_code=400,detail="Faile to decode audio")
+    
+    #Get chatGpte response
+    chat_response = get_chat_response(message_decoded)
+    print("chat response:",chat_response)
+
+    return "Done"
 
 
