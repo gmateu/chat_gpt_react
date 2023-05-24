@@ -46,7 +46,7 @@ def get_recent_messages():
 #store messages
 def store_messages(request_message,response_message):
     #define the file name
-    file_name = "store_data.json"
+    file_name = "stored_data.json"
 
     #get recent messages
     messages=get_recent_messages()[1:]
@@ -59,5 +59,9 @@ def store_messages(request_message,response_message):
 
     with open(file_name, "w") as f:
         json.dump(messages, f)
+
+def reset_messages():
+    open("stored_data.json","w")
+
 
 
