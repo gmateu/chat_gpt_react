@@ -44,17 +44,14 @@ async def reset_conversation():
 #post bot response
 #notee: not playing in browser when using post request
 @app.post("/post-audio")
-async def post_audio(file:UploadFile=File(...)):
-    print("hello world",file)
-    message_decoded = convert_audio_to_text(file)
-    print("message:",message_decoded)
-    return message_decoded
+async def post_audio(file: UploadFile = File(...)):
+    #audio_input = open("guillem_voice.mp3", "rb")
 
+    #save file from front end
+    with open(file.filename, "wb") as buffer:
+        buffer.write(file.file.read())
+    audio_input = open(file.filename, "rb")
 
-#get audio
-@app.get("/post-audio-get")
-async def get_audio():
-    audio_input = open("guillem_voice.mp3", "rb")
 
     #decode audio
     message_decoded = convert_audio_to_text(audio_input)
@@ -87,6 +84,6 @@ async def get_audio():
     print("chat response:",chat_response)
 
     #return audio file
-    return StreamingResponse(iterfile(),media_type="audio/mpeg")
+    return StreamingResponse(iterfile(),media_type="application/octet-stream")
 
 
