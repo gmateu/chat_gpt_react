@@ -80,14 +80,13 @@ async def get_audio():
     def iterfile():
         yield audio_output
     
-    #return audio file
-    return StreamingResponse(iterfile(),media_type="audio/mpeg")
 
     #store messages
     store_messages(message_decoded, chat_response)
 
     print("chat response:",chat_response)
 
-    return "Done"
+    #return audio file
+    return StreamingResponse(iterfile(),media_type="audio/mpeg")
 
 
