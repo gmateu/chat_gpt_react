@@ -1,4 +1,5 @@
 #\!/bin/bash
+#https://phoenixnap.com/kb/debian-install-nodejs
 yarn create vite .
 yarn --exact
 #yarn dev to run server

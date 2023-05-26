@@ -13,7 +13,7 @@ function Title({ setMessages }: Props) {
     const resetConversation = async () => {
         console.log('Resetting')
         setIsResetting(true)
-        await axios.get("http://192.168.1.10:8000/reset").then((res) => {
+        await axios.get("http://172.30.6.144:8000/reset").then((res) => {
             if(res.status==200){
                 setMessages([])
             }else{
