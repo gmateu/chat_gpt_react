@@ -1,8 +1,8 @@
-import Controller from "./components/Controller"
+import Controller2 from "./components/Controller2"
 function App() {
   return (
     <div className=''>
-      <Controller />
+      <Controller2 />
     </div>
   )
 }
